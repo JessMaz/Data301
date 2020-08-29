@@ -1,7 +1,7 @@
 # Packages
-library(ggplot2)
-library(dplyr)
-library(tidyr)
+require(ggplot2)
+require(dplyr)
+require(tidyr)
 
 #---------------EXPLORING AND MERGING DATASETS---------------
 # Load data
@@ -76,30 +76,27 @@ income_df$victims_by_pop <- income_df$victims/income_df$pop
 
 # Plot victimization
 victim_plot <- ggplot(income_df, aes(Territorial.Authority, victims_by_pop)) +
-              geom_line(group = 1)+
-              geom_point()+
-              theme(axis.text.x = element_text(angle = 90, hjust=1),
-                    text = element_text(size = 10)) +
-              labs(x="", y="Victimisation Rate (% of Territory Pop.)")
+                      geom_bar(stat="identity") +
+                      theme(axis.text.x = element_text(angle = 90, hjust=1),
+                            text = element_text(size = 10)) +
+                      labs(x="", y="Victimisation Rate (% of Territory Pop.)")
 
 victim_plot
 
 # Plot income
 income_plot <- ggplot(income_df, aes(Territorial.Authority, mean_income)) +
-  geom_line(group = 1)+
-  geom_point()+
-  theme(axis.text.x = element_text(angle = 90, hjust=1),
-        text = element_text(size = 10)) +
-  labs(x="", y="Mean Personal Income ($NZD)")
+                      geom_bar(stat="identity") +
+                      theme(axis.text.x = element_text(angle = 90, hjust=1),
+                            text = element_text(size = 10)) +
+                      labs(x="", y="Mean Personal Income ($NZD)")
 
 income_plot
 
 # Plot unemployment
 unemployment_plot <- ggplot(income_df, aes(Territorial.Authority, mean_UR)) +
-  geom_line(group = 1)+
-  geom_point()+
-  theme(axis.text.x = element_text(angle = 90, hjust=1),
-        text = element_text(size = 10)) +
-  labs(x="", y="Unemployment Rate (%)")
+                            geom_bar(stat="identity") +
+                            theme(axis.text.x = element_text(angle = 90, hjust=1),
+                                  text = element_text(size = 10)) +
+                            labs(x="", y="Unemployment Rate (%)")
 
 unemployment_plot
